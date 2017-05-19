@@ -47,6 +47,13 @@ PATCHES=(
 	"${FILESDIR}/${PN}-1.56.0-build-auto_index-tool.patch"
 	"${FILESDIR}/${PN}-1.63.0-fix-python.patch"
 )
+case ${CHOST} in
+	*-mingw*|mingw*|*-winnt*|winnt*)
+	PATCHES+=(
+		"${FILESDIR}/${PN}-1.63.0-serialization-mingw-w64.patch"
+	)
+	;;
+esac
 
 python_bindings_needed() {
 	multilib_is_native_abi && use python
@@ -198,9 +205,19 @@ src_configure() {
 		link=$(usex static-libs shared,static shared)
 	)
 
-	[[ ${CHOST} == *-winnt* ]] && OPTIONS+=(
+	case ${CHOST} in
+	*-mingw*|mingw*|*-winnt*|winnt*)
+		OPTIONS+=(
 			-sNO_BZIP2=1
+			target-os=windows
 		)
+		if use threads; then
+			OPTIONS+=(
+				threadapi=win32
+			)
+		fi
+		;;
+	esac
 }
 
 multilib_src_compile() {
