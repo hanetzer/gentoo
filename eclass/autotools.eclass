@@ -53,9 +53,9 @@ inherit libtool
 # version.
 # If a newer slot is stable on any arch, and is NOT reflected in this list,
 # then circular dependencies may arise during emerge @system bootstraps.
-# 
+#
 # See bug 312315 and 465732 for further information and context.
-# 
+#
 # Do NOT change this variable in your ebuilds!
 # If you want to force a newer minor version, you can specify the correct
 # WANT value by using a colon:  <PV>:<WANT_AUTOMAKE>
@@ -445,6 +445,7 @@ autotools_env_setup() {
 			# has_version respects ROOT, but in this case, we don't want it to,
 			# thus "ROOT=/" prefix;
 			# Break on first hit to respect _LATEST_AUTOMAKE order.
+			[[ ${EAPI} == 7 ]] && has_version -b "=sys-devel/automake-${pv}*" && export WANT_AUTOMAKE="${pv}" && break
 			ROOT=/ has_version "=sys-devel/automake-${pv}*" && export WANT_AUTOMAKE="${pv}" && break
 		done
 		[[ ${WANT_AUTOMAKE} == "latest" ]] && \
