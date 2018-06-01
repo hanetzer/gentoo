@@ -5,9 +5,9 @@ EAPI=5
 
 PYTHON_COMPAT=( python2_7 )	# still only supports py2
 
-inherit distutils-r1 flag-o-matic versionator
+inherit distutils-r1 eapi7-ver flag-o-matic
 
-MY_PV="$(replace_all_version_separators  '_' )"
+MY_PV="$(ver_rs 1- '_')"
 DESCRIPTION="Python bindings for Network Security Services (NSS)"
 HOMEPAGE="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/Python_binding_for_NSS"
 SRC_URI="ftp://ftp.mozilla.org/pub/mozilla.org/security/${PN}/releases/PYNSS_RELEASE_${MY_PV}/src/${P}.tar.bz2"
