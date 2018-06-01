@@ -1,13 +1,13 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="5"
 PYTHON_COMPAT=( python2_7 )
 
-inherit distutils-r1 eutils versionator flag-o-matic
+inherit distutils-r1 eapi7-ver eutils flag-o-matic
 
 MY_PN="RuleDispatch"
-MY_P="${MY_PN}-$(get_version_component_range 1-2)a0.dev-$(get_version_component_range 3-)"
+MY_P="${MY_PN}-$(ver_cut 1-2)a0.dev-$(ver_cut 3-)"
 MY_P="${MY_P/pre/r}"
 
 DESCRIPTION="Rule-based Dispatching and Generic Functions"
