@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit pax-utils python-utils-r1 unpacker versionator
+inherit pax-utils python-utils-r1 unpacker
 
 BINHOST="https://dev.gentoo.org/~mgorny/dist/pypy-bin/${PV}"
 CPY_PATCHSET_VERSION="2.7.14-0"

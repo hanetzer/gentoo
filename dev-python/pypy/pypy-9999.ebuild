@@ -5,7 +5,7 @@ EAPI=6
 
 PYTHON_COMPAT=( python2_7 pypy )
 EHG_REPO_URI="https://bitbucket.org/pypy/pypy"
-inherit check-reqs mercurial pax-utils python-any-r1 toolchain-funcs versionator
+inherit check-reqs mercurial pax-utils python-any-r1 toolchain-funcs
 
 # note: remember to update this to newest dev-lang/python:2.7 on bump
 CPY_PATCHSET_VERSION="2.7.14-0"

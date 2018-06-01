@@ -5,7 +5,7 @@ EAPI=6
 
 # Test runner needs Python 2.
 PYTHON_COMPAT=( python2_7 pypy )
-inherit pax-utils python-any-r1 unpacker versionator
+inherit pax-utils python-any-r1 unpacker
 
 BINHOST="https://dev.gentoo.org/~mgorny/dist/pypy3-bin/${PV}"
 MY_P=pypy3-v${PV}

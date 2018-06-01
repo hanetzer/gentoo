@@ -5,7 +5,7 @@ EAPI=6
 
 # pypy3 needs to be built using python 2
 PYTHON_COMPAT=( python2_7 pypy )
-inherit check-reqs pax-utils python-any-r1 toolchain-funcs versionator
+inherit check-reqs pax-utils python-any-r1 toolchain-funcs
 
 MY_P=pypy3-v${PV}
 

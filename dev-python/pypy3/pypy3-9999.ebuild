@@ -8,9 +8,9 @@ PYTHON_COMPAT=( python2_7 pypy )
 EHG_PROJECT="pypy"
 EHG_REPO_URI="https://bitbucket.org/pypy/pypy"
 EHG_REVISION="py3k"
-inherit check-reqs mercurial pax-utils python-any-r1 toolchain-funcs versionator
+inherit check-reqs mercurial pax-utils python-any-r1 toolchain-funcs
 
-DESCRIPTION="A fast, compliant alternative implementation of the Python (3.3) language"
+DESCRIPTION="A fast, compliant alternative implementation of the Python (3.5) language"
 HOMEPAGE="http://pypy.org/"
 SRC_URI=""
 
