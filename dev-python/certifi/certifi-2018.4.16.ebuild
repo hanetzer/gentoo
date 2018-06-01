@@ -5,7 +5,7 @@ EAPI=6
 
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} pypy pypy3 )
 
-inherit distutils-r1 prefix readme.gentoo-r1 versionator
+inherit distutils-r1 prefix readme.gentoo-r1
 
 DESCRIPTION="Python package for providing Mozilla's CA Bundle"
 HOMEPAGE="http://certifi.io/ https://pypi.org/project/certifi"
