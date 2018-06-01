@@ -1,14 +1,14 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 pypy )
 
-inherit distutils-r1 versionator
+inherit distutils-r1 eapi7-ver
 
 MY_PN="HappyDoc"
-MY_PV=$(replace_all_version_separators "_" ${PV})
-MY_V=$(get_major_version ${PV})
+MY_PV=$(ver_rs 1- "_")
+MY_V=$(ver_cut 1)
 
 DESCRIPTION="Tool for extracting documentation from Python source code"
 HOMEPAGE="http://happydoc.sourceforge.net/"
