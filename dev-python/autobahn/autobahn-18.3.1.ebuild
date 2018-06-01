@@ -5,9 +5,9 @@ EAPI=5
 
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
 
-inherit distutils-r1 versionator
+inherit distutils-r1 eapi7-ver
 
-MY_P="${PN}-$(replace_version_separator 3 -)"
+MY_P="${PN}-$(ver_rs 3 -)"
 
 DESCRIPTION="WebSocket and WAMP for Twisted and Asyncio"
 HOMEPAGE="https://pypi.org/project/autobahn/
