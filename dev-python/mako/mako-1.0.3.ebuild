@@ -1,11 +1,11 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
 
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} pypy )
 
-inherit distutils-r1 eutils versionator
+inherit distutils-r1 eutils eapi7-ver
 
 MY_PN="Mako"
 MY_P=${MY_PN}-${PV}
@@ -21,7 +21,9 @@ IUSE="doc test"
 
 RDEPEND="
 	>=dev-python/markupsafe-0.9.2[${PYTHON_USEDEP}]"
-DEPEND="${RDEPEND}
+
+DEPEND="
+	${RDEPEND}
 	dev-python/setuptools[${PYTHON_USEDEP}]
 	test? (
 		dev-python/nose[${PYTHON_USEDEP}]
@@ -44,7 +46,7 @@ python_install_all() {
 pkg_postinst() {
 	optfeature "Caching support" dev-python/beaker
 	for v in ${REPLACING_VERSIONS}; do
-		if ! version_is_at_least 0.7.3-r2 $v; then
+		if ver_compare ${v} -lt 0.7.3-r2; then
 			ewarn "dev-python/beaker is no longer hard dependency of ${P}"
 			ewarn "If you rely on it, you should add beaker to your world"
 			ewarn "file:"

@@ -5,7 +5,7 @@ EAPI=6
 
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} pypy )
 
-inherit distutils-r1 eutils versionator
+inherit distutils-r1 eutils eapi7-ver
 
 MY_PN="Mako"
 MY_P=${MY_PN}-${PV}
@@ -47,7 +47,7 @@ python_install_all() {
 pkg_postinst() {
 	optfeature "Caching support" dev-python/beaker
 	for v in ${REPLACING_VERSIONS}; do
-		if ! version_is_at_least 0.7.3-r2 $v; then
+		if ver_compare ${v} -lt 0.7.3-r2; then
 			ewarn "dev-python/beaker is no longer hard dependency of ${P}"
 			ewarn "If you rely on it, you should add beaker to your world"
 			ewarn "file:"
