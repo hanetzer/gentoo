@@ -8,7 +8,7 @@ PYTHON_REQ_USE="threads(+)"
 
 FORTRAN_NEEDED=lapack
 
-inherit distutils-r1 eutils flag-o-matic fortran-2 multilib multiprocessing toolchain-funcs versionator
+inherit distutils-r1 eutils flag-o-matic fortran-2 multilib multiprocessing toolchain-funcs
 
 DOC_PV="1.10.1"
 DOC_P="${PN}-${DOC_PV}"
