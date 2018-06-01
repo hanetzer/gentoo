@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -6,7 +6,7 @@ EAPI=5
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} pypy )
 PYTHON_REQ_USE="threads(+)"
 
-inherit distutils-r1 eutils versionator
+inherit distutils-r1 eapi7-ver eutils
 
 MY_PN="Sphinx"
 MY_P="${MY_PN}-${PV}"
@@ -71,7 +71,7 @@ python_install_all() {
 replacing_python_eclass() {
 	local pv
 	for pv in ${REPLACING_VERSIONS}; do
-		if ! version_is_at_least 1.1.3-r4 ${pv}; then
+		if ver_compare ${pv} -lt 1.1.3-r4; then
 			return 0
 		fi
 	done

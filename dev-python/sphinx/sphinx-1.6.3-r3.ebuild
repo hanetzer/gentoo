@@ -6,7 +6,7 @@ EAPI=6
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} pypy{,3} )
 PYTHON_REQ_USE="threads(+)"
 
-inherit distutils-r1 eutils versionator
+inherit distutils-r1 eapi7-ver eutils
 
 DESCRIPTION="Python documentation generator"
 HOMEPAGE="http://www.sphinx-doc.org/"
@@ -102,7 +102,7 @@ pkg_postinst() {
 	replacing_python_eclass() {
 		local pv
 		for pv in ${REPLACING_VERSIONS}; do
-			if ! version_is_at_least 1.1.3-r4 ${pv}; then
+			if ver_compare ${pv} -lt 1.1.3-r4; then
 				return 0
 			fi
 		done
