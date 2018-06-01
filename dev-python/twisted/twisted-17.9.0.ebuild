@@ -5,11 +5,11 @@ EAPI=5
 PYTHON_COMPAT=( python2_7 python3_{4,5,6})
 PYTHON_REQ_USE="threads(+)"
 
-inherit eutils flag-o-matic distutils-r1 versionator
+inherit distutils-r1 eapi7-ver eutils flag-o-matic
 
 TWISTED_PN="Twisted"
 TWISTED_P="${TWISTED_PN}-${PV}"
-TWISTED_RELEASE=$(get_version_component_range 1-2 "${PV}")
+TWISTED_RELEASE=$(ver_cut 1-2)
 
 DESCRIPTION="An asynchronous networking framework written in Python"
 HOMEPAGE="https://www.twistedmatrix.com/trac/"
