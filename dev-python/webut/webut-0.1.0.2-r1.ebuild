@@ -1,12 +1,12 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
 
-inherit distutils-r1 versionator
+inherit distutils-r1 eapi7-ver
 
-MY_P=${PN}_$(replace_version_separator 2 '-')
+MY_P=${PN}_$(ver_rs 2 '-')
 
 DESCRIPTION="Miscellaneous utilities for nevow and twisted.web programming"
 HOMEPAGE="http://www.inoi.fi/open/trac/webut"
@@ -22,7 +22,7 @@ RDEPEND=">=dev-python/nevow-0.9.18[${PYTHON_USEDEP}]
 	>=dev-python/zope-interface-3.0.1[${PYTHON_USEDEP}]"
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/${PN}-$(get_version_component_range 1-2)"
+S="${WORKDIR}/${PN}-$(ver_cut 1-2)"
 
 python_install_all() {
 	use examples && local EXAMPLES=( examples/. )
