@@ -5,7 +5,7 @@ EAPI=6
 
 PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} pypy )
 
-inherit distutils-r1 versionator
+inherit distutils-r1
 
 MY_PN=WebOb
 MY_P=${MY_PN}-${PV}
