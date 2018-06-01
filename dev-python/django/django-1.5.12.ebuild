@@ -1,18 +1,22 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
+
 PYTHON_COMPAT=( python2_7 pypy )
+
 PYTHON_REQ_USE='sqlite?,threads(+)'
 WEBAPP_NO_AUTO_INSTALL="yes"
 
-inherit bash-completion-r1 distutils-r1 versionator webapp
+inherit bash-completion-r1 distutils-r1 eapi7-ver webapp
 
 MY_P="Django-${PV}"
 
 DESCRIPTION="High-level Python web framework"
 HOMEPAGE="https://www.djangoproject.com/ https://pypi.org/project/Django/"
-SRC_URI="https://www.djangoproject.com/m/releases/$(get_version_component_range 1-2)/${MY_P}.tar.gz"
+SRC_URI="
+	https://www.djangoproject.com/m/releases/$(ver_cut 1-2)/${MY_P}.tar.gz
+	"
 
 LICENSE="BSD"
 SLOT="0"
@@ -34,8 +38,10 @@ S="${WORKDIR}/${MY_P}"
 
 WEBAPP_MANUAL_SLOT="yes"
 
-PATCHES=( "${FILESDIR}"/${PN}-1.5.4-objects.patch \
-		"${FILESDIR}"/${PN}-1.5-py3tests.patch )
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.5.4-objects.patch
+	"${FILESDIR}"/${PN}-1.5-py3tests.patch
+)
 
 python_compile_all() {
 	if use doc; then
@@ -51,11 +57,6 @@ python_test() {
 		|| die "Tests fail with ${EPYTHON}"
 }
 
-src_install() {
-	distutils-r1_src_install
-	webapp_src_install
-}
-
 python_install_all() {
 	newbashcomp extras/django_bash_completion ${PN}
 
@@ -67,6 +68,11 @@ python_install_all() {
 	insinto "${MY_HTDOCSDIR#${EPREFIX}}"
 	doins -r django/contrib/admin/static/admin/.
 	distutils-r1_python_install_all
+}
+
+src_install() {
+	distutils-r1_src_install
+	webapp_src_install
 }
 
 pkg_postinst() {
