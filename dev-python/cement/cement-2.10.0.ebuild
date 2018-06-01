@@ -1,13 +1,13 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit distutils-r1 versionator
+inherit distutils-r1 eapi7-ver
 
-PV_MAJOR_MINOR=$(get_version_component_range 1-2)
+PV_MAJOR_MINOR=$(ver_cut 1-2)
 
 DESCRIPTION="CLI Application Framework for Python"
 HOMEPAGE="http://builtoncement.com/"
