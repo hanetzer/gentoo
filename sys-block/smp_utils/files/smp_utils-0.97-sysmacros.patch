@@ -1,0 +1,34 @@
+https://bugs.gentoo.org/580258
+
+From 6c6f341d84f1e4c2c67fed98f09debe086fe9a47 Mon Sep 17 00:00:00 2001
+From: Mike Frysinger <vapier@gentoo.org>
+Date: Tue, 19 Apr 2016 02:19:20 -0400
+Subject: [PATCH] include sys/sysmacros.h for major/minor/makedev
+
+These funcs are defined in that header, so include it to avoid errors:
+../lib/.libs/libsmputils1.so: undefined reference to 'minor'
+---
+ lib/smp_lin_bsg.c   | 1 +
+ lib/smp_mptctl_io.c | 1 +
+ 3 files changed, 3 insertions(+)
+
+--- a/lib/smp_lin_bsg.c
++++ b/lib/smp_lin_bsg.c
+@@ -9,6 +9,7 @@
+ #include <fcntl.h>
+ //#include <curses.h>
+ #include <unistd.h>
++#include <sys/sysmacros.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <sys/ioctl.h>
+--- a/lib/smp_mptctl_io.c
++++ b/lib/smp_mptctl_io.c
+@@ -7,6 +7,7 @@
+ #include <fcntl.h>
+ //#include <curses.h>
+ #include <unistd.h>
++#include <sys/sysmacros.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <sys/ioctl.h>
