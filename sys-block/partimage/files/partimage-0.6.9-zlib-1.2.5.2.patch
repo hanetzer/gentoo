@@ -1,7 +1,7 @@
 http://bugs.gentoo.org/405323
 
---- src/client/imagefile.cpp
-+++ src/client/imagefile.cpp
+--- a/src/client/imagefile.cpp
++++ b/src/client/imagefile.cpp
 @@ -783,7 +783,7 @@
    else if (m_options.dwCompression == COMPRESS_GZIP) // Gzip compression
      {
@@ -20,8 +20,8 @@ http://bugs.gentoo.org/405323
        if (m_gzImageFile == NULL)
          THROW(ERR_ERRNO, errno);
        else
---- src/client/imagefile.h
-+++ src/client/imagefile.h
+--- a/src/client/imagefile.h
++++ b/src/client/imagefile.h
 @@ -41,7 +41,7 @@
    COptions m_options;
  
