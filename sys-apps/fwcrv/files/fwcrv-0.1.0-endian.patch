@@ -1,6 +1,5 @@
-diff -ruN src/functions.c /tmp/src/functions.c
---- src/functions.c	2002-11-14 23:46:11.000000000 +0100
-+++ src.new/functions.c	2006-03-22 11:51:03.000000000 +0100
+--- a/src/functions.c
++++ b/src/functions.c
 @@ -59,7 +59,7 @@
  byte ParseCommandLineOptions( int ArgCount, char *ArgValue[], byte *Mode, byte *ReadLength )
  {
@@ -10,9 +9,8 @@ diff -ruN src/functions.c /tmp/src/functions.c
    byte Node_ID;
    
    Node_ID = 0;  // Default Node_ID used is 0
-diff -ruN src/functions.h /tmp/src/functions.h
---- src/functions.h	2001-06-21 01:11:43.000000000 +0200
-+++ src.new/functions.h	2006-03-22 11:47:48.000000000 +0100
+--- a/src/functions.h
++++ b/src/functions.h
 @@ -16,18 +16,29 @@
   *     byte2 = bits 08-15  (on ix86, bits 16-23)
   *     byte3 = bits 00-07  (on ix86, bits 24-31)
