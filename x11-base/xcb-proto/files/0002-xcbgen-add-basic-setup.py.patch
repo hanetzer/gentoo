@@ -1,0 +1,41 @@
+From 1cd71356b23dde50ea3651532e81ee72d78d9a82 Mon Sep 17 00:00:00 2001
+From: "Marty E. Plummer" <hanetzer@startmail.com>
+Date: Wed, 1 Aug 2018 19:29:00 -0500
+Subject: [PATCH 2/3] xcbgen: add basic setup.py
+
+Signed-off-by: Marty E. Plummer <hanetzer@startmail.com>
+---
+ setup.py | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+ create mode 100644 setup.py
+
+diff --git a/setup.py b/setup.py
+new file mode 100644
+index 0000000..96b20bd
+--- /dev/null
++++ b/setup.py
+@@ -0,0 +1,21 @@
++# -*- coding: utf-8 -*-
++
++from distutils.core import setup
++
++setup(
++    name = 'xcbgen',
++    version = '1.13',
++    url = 'https://xcb.freedesktop.org',
++    package_dir = {'': 'lib'},
++    packages = ['xcbgen'],
++
++    classifiers = [
++        'Development Status :: 5 - Production/Stable',
++        'Environment :: Console',
++        'Intended Audience :: Developers',
++        'License :: OSI Approved :: MIT License',
++        'Operating System :: POSIX',
++        'Programming Language :: Python',
++        'Topic :: Software Development'
++    ]
++)
+-- 
+2.18.0
+

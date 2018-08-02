@@ -1,0 +1,112 @@
+From bcdb583a3fc1820629ec12a3824b0ec4d370ed55 Mon Sep 17 00:00:00 2001
+From: "Marty E. Plummer" <hanetzer@startmail.com>
+Date: Wed, 1 Aug 2018 20:25:23 -0500
+Subject: [PATCH 3/3] xcb-proto: add meson build system
+
+Signed-off-by: Marty E. Plummer <hanetzer@startmail.com>
+---
+ meson.build       | 14 ++++++++++++
+ meson_options.txt |  6 +++++
+ src/meson.build   | 56 +++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 76 insertions(+)
+ create mode 100644 meson.build
+ create mode 100644 meson_options.txt
+ create mode 100644 src/meson.build
+
+diff --git a/meson.build b/meson.build
+new file mode 100644
+index 0000000..ba4bea4
+--- /dev/null
++++ b/meson.build
+@@ -0,0 +1,14 @@
++project('xcb-proto', version: '1.13', license: 'MIT')
++
++subdir('src')
++
++pkg = import('pkgconfig')
++
++pkg.generate(
++    name: 'xcb-proto',
++    description: 'X protocol descriptions for XCB',
++    variables: [
++      'datarootdir=${prefix}/share',
++      'xcbincludedir=${datadir}/xcb'
++    ]
++)
+diff --git a/meson_options.txt b/meson_options.txt
+new file mode 100644
+index 0000000..a0af6bc
+--- /dev/null
++++ b/meson_options.txt
+@@ -0,0 +1,6 @@
++option(
++    'install-proto',
++    type : 'boolean',
++    value : true,
++    description : 'Install xcb protocol xml files'
++)
+diff --git a/src/meson.build b/src/meson.build
+new file mode 100644
+index 0000000..5be2f78
+--- /dev/null
++++ b/src/meson.build
+@@ -0,0 +1,56 @@
++
++proto = [
++  'bigreq.xml',
++  'composite.xml',
++  'damage.xml',
++  'dpms.xml',
++  'dri2.xml',
++  'dri3.xml',
++  'ge.xml',
++  'glx.xml',
++  'present.xml',
++  'randr.xml',
++  'record.xml',
++  'render.xml',
++  'res.xml',
++  'screensaver.xml',
++  'shape.xml',
++  'shm.xml',
++  'sync.xml',
++  'xc_misc.xml',
++  'xevie.xml',
++  'xf86dri.xml',
++  'xf86vidmode.xml',
++  'xfixes.xml',
++  'xinerama.xml',
++  'xinput.xml',
++  'xkb.xml',
++  'xprint.xml',
++  'xproto.xml',
++  'xselinux.xml',
++  'xtest.xml',
++  'xvmc.xml',
++  'xv.xml'
++]
++
++schema = 'xcb.xsd'
++
++xmllint = find_program(['xmllint', '/usr/bin/xmllint'], required : false)
++if xmllint.found()
++  #do xml validation
++  #foreach p : proto
++  # run_command(xmllint, '--noout', '--schema', schema, p)
++  #endforeach
++  run_target('check-local',
++      command : [ xmllint, '--noout', '--schema', schema, proto ]
++  )
++else
++  warning('xmllint not found; unable to validate against schema.')
++endif
++
++if get_option('install-proto')
++  install_data(
++      files([ proto, schema ]),
++      install_dir : join_paths(get_option('datadir'), 'xcb')
++  )
++endif
+-- 
+2.18.0
+
